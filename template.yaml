@@ -2,13 +2,6 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Simple EC2 deployment
 
 Resources:
-  MyEC2Instance:
-    Type: AWS::EC2::Instance
-    Properties:
-      InstanceType: t3.medium
-      ImageId: ami-077d1b9f9a1902bbc  # change based on region
-      SecurityGroupIds:
-        - !Ref InstanceSG
 
   InstanceSG:
     Type: AWS::EC2::SecurityGroup
@@ -19,3 +12,11 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
+
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.medium
+      ImageId: ami-009be0edec0817ffd   
+      SecurityGroupIds:
+        - !Ref InstanceSG
