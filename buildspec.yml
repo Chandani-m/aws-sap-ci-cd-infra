@@ -5,14 +5,26 @@ phases:
     runtime-versions:
       python: 3.11
 
+  pre_build:
+    commands:
+      - echo "Checking AWS identity..."
+      - aws sts get-caller-identity
+      - echo "Listing files..."
+      - ls -la
+
   build:
     commands:
       - echo "Deploying CloudFormation stack..."
-      - aws cloudformation deploy \
+      - |
+        aws cloudformation deploy \
           --template-file template.yaml \
           --stack-name my-cf-stack \
           --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
           --region ap-south-1
+
+  post_build:
+    commands:
+      - echo "Deployment completed successfully"
 
 artifacts:
   files:
