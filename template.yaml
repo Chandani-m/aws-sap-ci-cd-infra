@@ -16,7 +16,7 @@ Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: t3.medium
+      InstanceType: t3.xlarge
       ImageId: ami-009be0edec0817ffd   
       SecurityGroupIds:
         - !Ref InstanceSG
